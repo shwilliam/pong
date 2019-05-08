@@ -1,0 +1,17 @@
+{
+  "name": "pong",
+  "version": "0.1.0",
+  "description": "",
+  "license": "MIT",
+  "author": "William L <w-lindvall@outlook.com>",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "parcel index.html -p 3000",
+    "predeploy": "rm -rf dist && parcel build index.html --public-url /pong",
+    "deploy": "gh-pages -d dist"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.0.1",
+    "parcel-bundler": "^1.12.3"
+  }
+}
