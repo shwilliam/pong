@@ -5,6 +5,9 @@ export const BOARD_WIDTH = 512
 export const PADDLE_WIDTH = 8
 export const PADDLE_HEIGHT = 56
 
+// movement
+export const PADDLE_SPEED = 15
+
 // colors
 export const COLOR_BG = '#353535'
 export const COLOR_ACCENT = 'white'

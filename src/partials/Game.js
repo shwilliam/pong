@@ -3,7 +3,8 @@ import {
   BOARD_HEIGHT,
   BOARD_GAP,
   PADDLE_WIDTH,
-  PADDLE_HEIGHT
+  PADDLE_HEIGHT,
+  KEYS
 } from '../settings'
 import {
   setSvgAttr as setAttr,
@@ -27,11 +28,15 @@ export default class Game {
     this.board = new Board()
     this.paddleLeft = new Paddle(
       BOARD_GAP,
-      (BOARD_HEIGHT - PADDLE_HEIGHT) / 2
+      (BOARD_HEIGHT - PADDLE_HEIGHT) / 2,
+      KEYS.PLAYER1.DOWN,
+      KEYS.PLAYER1.UP
     )
     this.paddleRight = new Paddle(
       BOARD_WIDTH - PADDLE_WIDTH - BOARD_GAP,
-      (BOARD_HEIGHT - PADDLE_HEIGHT) / 2
+      (BOARD_HEIGHT - PADDLE_HEIGHT) / 2,
+      KEYS.PLAYER2.DOWN,
+      KEYS.PLAYER2.UP
     )
     this.ball = new Ball()
   }
