@@ -12,6 +12,7 @@ import {
 
 import Board from './Board'
 import Paddle from './Paddle'
+import Ball from './Ball'
 
 export default class Game {
   constructor (element) {
@@ -32,6 +33,7 @@ export default class Game {
       BOARD_WIDTH - PADDLE_WIDTH - BOARD_GAP,
       (BOARD_HEIGHT - PADDLE_HEIGHT) / 2
     )
+    this.ball = new Ball()
   }
 
   render (el) {
@@ -39,5 +41,6 @@ export default class Game {
     this.board.render(this.$svg)
     this.paddleLeft.render(this.$svg)
     this.paddleRight.render(this.$svg)
+    this.ball.render(this.$svg)
   }
 }
