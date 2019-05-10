@@ -41,10 +41,19 @@ export default class Game {
     )
     this.score = new Score(BOARD_WIDTH / 2 - 45, 30)
     this.ball = new Ball(this.score.increaseScore.bind(this.score))
+
+    this.paused = false
+    document.addEventListener('keydown', e => {
+      if (e.key === KEYS.PAUSE) {
+        this.paused = !this.paused
+      }
+    })
   }
 
   render (el) {
     // console.log('render game')
+    if (this.paused) return
+
     this.board.render(this.$svg)
     this.paddleLeft.render(this.$svg)
     this.paddleRight.render(this.$svg)
