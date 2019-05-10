@@ -1,4 +1,5 @@
 // dimensions
+export const BALL_RADIUS = 8
 export const BOARD_GAP = 10
 export const BOARD_HEIGHT = 256
 export const BOARD_WIDTH = 512

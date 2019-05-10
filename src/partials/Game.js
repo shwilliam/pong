@@ -42,10 +42,13 @@ export default class Game {
   }
 
   render (el) {
-    console.log('render game')
+    // console.log('render game')
     this.board.render(this.$svg)
     this.paddleLeft.render(this.$svg)
     this.paddleRight.render(this.$svg)
-    this.ball.render(this.$svg)
+    this.ball.render(this.$svg,
+      this.paddleLeft.getCoordinates(),
+      this.paddleRight.getCoordinates()
+    )
   }
 }

@@ -6,6 +6,7 @@ import {
 
 export default class Paddle {
   constructor (x, initialY, keyDown, keyUp) {
+    this.x = x
     this.y = initialY
     this.$paddle = makeEl('rect')
     setAttr(this.$paddle, 'x', x)
@@ -25,6 +26,15 @@ export default class Paddle {
     })
   }
 
+  getCoordinates () {
+    return {
+      left: this.x,
+      top: this.y,
+      right: this.x + PADDLE_WIDTH,
+      bottom: this.y + PADDLE_HEIGHT
+    }
+  }
+
   move (distance) {
     if (this.y + distance < BOARD_HEIGHT - PADDLE_HEIGHT &&
       this.y + distance > 0) {
@@ -33,7 +43,7 @@ export default class Paddle {
   }
 
   render (el) {
-    console.log('render paddle')
+    // console.log('render paddle')
     setAttr(this.$paddle, 'y', this.y)
     el.appendChild(this.$paddle)
   }
