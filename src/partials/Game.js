@@ -14,6 +14,7 @@ import {
 import Board from './Board'
 import Paddle from './Paddle'
 import Ball from './Ball'
+import Score from './Score'
 
 export default class Game {
   constructor (element) {
@@ -38,7 +39,8 @@ export default class Game {
       KEYS.PLAYER2.DOWN,
       KEYS.PLAYER2.UP
     )
-    this.ball = new Ball()
+    this.score = new Score(BOARD_WIDTH / 2 - 45, 30)
+    this.ball = new Ball(this.score.increaseScore.bind(this.score))
   }
 
   render (el) {
@@ -46,9 +48,11 @@ export default class Game {
     this.board.render(this.$svg)
     this.paddleLeft.render(this.$svg)
     this.paddleRight.render(this.$svg)
-    this.ball.render(this.$svg,
+    this.ball.render(
+      this.$svg,
       this.paddleLeft.getCoordinates(),
       this.paddleRight.getCoordinates()
     )
+    this.score.render(this.$svg)
   }
 }

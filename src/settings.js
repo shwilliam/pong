@@ -13,6 +13,10 @@ export const PADDLE_SPEED = 15
 export const COLOR_BG = '#353535'
 export const COLOR_ACCENT = 'white'
 
+// fonts
+export const FONT_FAMILY = 'Silkscreen Web'
+export const FONT_SIZE = 30
+
 // controls
 export const KEYS = {
   PAUSE: ' ',

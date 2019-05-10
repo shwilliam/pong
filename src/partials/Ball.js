@@ -5,8 +5,9 @@ import {
 } from '../utils'
 
 export default class Ball {
-  constructor () {
+  constructor (increaseScore) {
     this.$ball = makeEl('circle')
+    this.increaseScore = increaseScore
     setAttr(this.$ball, 'r', BALL_RADIUS)
     setAttr(this.$ball, 'fill', COLOR_ACCENT)
     this.reset()
@@ -15,9 +16,11 @@ export default class Ball {
   checkGoal () {
     if (this.x <= 0) {
       this.vx *= -1
+      this.increaseScore(0)
       this.reset()
     } else if (this.x >= BOARD_WIDTH) {
       this.vx *= -1
+      this.increaseScore(1)
       this.reset()
     }
   }
