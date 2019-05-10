@@ -1,4 +1,5 @@
 import { BALL_RADIUS, BOARD_WIDTH, BOARD_HEIGHT, COLOR_ACCENT } from '../settings'
+import SOUND from '../../public/sounds/pong-01.wav'
 import {
   setSvgAttr as setAttr,
   makeSvgEl as makeEl
@@ -10,6 +11,7 @@ export default class Ball {
     this.increaseScore = increaseScore
     setAttr(this.$ball, 'r', BALL_RADIUS)
     setAttr(this.$ball, 'fill', COLOR_ACCENT)
+    this.ping = new Audio(SOUND)
     this.reset()
   }
 
@@ -29,7 +31,10 @@ export default class Ball {
     const atTop = this.y - BALL_RADIUS <= 0
     const atBottom = this.y + BALL_RADIUS >= BOARD_HEIGHT
 
-    if (atTop || atBottom) this.vy *= -1
+    if (atTop || atBottom) {
+      this.vy *= -1
+      this.ping.play()
+    }
 
     const [paddleLeft, paddleRight] = paddles
     if (this.vx > 0) {
@@ -37,11 +42,13 @@ export default class Ball {
         this.y <= paddleRight.bottom &&
         this.y >= paddleRight.top) {
         this.vx *= -1
+        this.ping.play()
       }
     } else if (this.x - BALL_RADIUS <= paddleLeft.right &&
       this.y <= paddleLeft.bottom &&
       this.y >= paddleLeft.top) {
       this.vx *= -1
+      this.ping.play()
     }
   }
 
