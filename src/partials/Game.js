@@ -3,6 +3,7 @@ import CenterLine from './CenterLine'
 import Paddle from './Paddle'
 import Ball from './Ball'
 import Score from './Score'
+import SettingsModal from './SettingsModal'
 
 import {
   setSvgAttr as setAttr,
@@ -27,6 +28,14 @@ export default class Game {
     setAttr(this.$svg, 'height', BOARD_HEIGHT)
     setAttr(this.$svg, 'viewbox', `0 0 ${BOARD_WIDTH} ${BOARD_HEIGHT}`)
 
+    // set up pause listener
+    this.paused = false
+    document.addEventListener(
+      'keydown',
+      e => e.key === KEYS.PAUSE &&
+        this.pause(!this.paused)
+    )
+
     // init game components
     this.paddleLeft = new Paddle(
       BOARD_GAP,
@@ -46,6 +55,7 @@ export default class Game {
       this.paddleLeft.getCoordinates(),
       this.paddleRight.getCoordinates()
     )
+    new SettingsModal('settings-toggle', this.pause.bind(this))
 
     // append game components to svg
     this.$svg.appendChild(new Board().el)
@@ -58,25 +68,20 @@ export default class Game {
     // render svg
     this.$container = document.getElementById(element)
     this.$container.appendChild(this.$svg)
+  }
 
-    // set up pause listener
-    this.paused = false
-    document.addEventListener(
-      'keydown',
-      e => e.key === KEYS.PAUSE &&
-        (this.paused = !this.paused)
-    )
+  pause (val) {
+    this.paused = val
   }
 
   update () {
-    if (this.paused) return
-
-    this.paddleLeft.update()
-    this.paddleRight.update()
     this.ball.update(
+      this.paused,
       this.paddleLeft.getCoordinates(),
       this.paddleRight.getCoordinates()
     )
+    this.paddleLeft.update(this.paused)
+    this.paddleRight.update(this.paused)
     this.score.update()
   }
 }

@@ -8,7 +8,7 @@ const {
   BOARD_WIDTH,
   COLOR_ACCENT,
   FONT_FAMILY,
-  FONT_SIZE
+  FONT_SIZE,
 } = SETTINGS
 
 export default class Score {

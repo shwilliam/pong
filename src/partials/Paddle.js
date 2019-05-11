@@ -22,7 +22,10 @@ export default class Paddle {
     setAttr(this.$paddle, 'height', PADDLE_HEIGHT)
     setAttr(this.$paddle, 'fill', COLOR_ACCENT)
 
+    this.paused = true
     document.addEventListener('keydown', e => {
+      if (this.paused) return
+
       switch (e.key) {
         case keyDown:
           this.move(PADDLE_SPEED)
@@ -54,7 +57,8 @@ export default class Paddle {
     return this.$paddle
   }
 
-  update () {
+  update (paused) {
+    this.paused = paused
     setAttr(this.$paddle, 'y', this.y)
   }
 }

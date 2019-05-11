@@ -75,7 +75,9 @@ export default class Ball {
     return this.$ball
   }
 
-  update (...paddles) {
+  update (paused, ...paddles) {
+    if (paused) return
+
     setAttr(this.$ball, 'cx', this.x)
     setAttr(this.$ball, 'cy', this.y)
     this.x += this.vx
