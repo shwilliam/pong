@@ -38,7 +38,7 @@ export default class Game {
       KEYS.PLAYER2.DOWN,
       KEYS.PLAYER2.UP
     )
-    this.score = new Score(BOARD_WIDTH / 2 - 45, 30)
+    this.score = new Score()
     this.ball = new Ball(this.score.increaseScore.bind(this.score))
     this.ball.update(
       this.paddleLeft.getCoordinates(),
