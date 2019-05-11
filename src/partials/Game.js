@@ -19,14 +19,13 @@ import Score from './Score'
 
 export default class Game {
   constructor (element) {
+    // create svg el
     this.$svg = makeEl('svg')
     setAttr(this.$svg, 'width', BOARD_WIDTH)
     setAttr(this.$svg, 'height', BOARD_HEIGHT)
     setAttr(this.$svg, 'viewbox', `0 0 ${BOARD_WIDTH} ${BOARD_HEIGHT}`)
 
-    this.$container = document.getElementById(element)
-    this.$container.appendChild(this.$svg)
-
+    // init game components
     this.paddleLeft = new Paddle(
       BOARD_GAP,
       (BOARD_HEIGHT - PADDLE_HEIGHT) / 2,
@@ -41,25 +40,30 @@ export default class Game {
     )
     this.score = new Score(BOARD_WIDTH / 2 - 45, 30)
     this.ball = new Ball(this.score.increaseScore.bind(this.score))
-
-    this.paused = false
-    document.addEventListener('keydown', e => {
-      if (e.key === KEYS.PAUSE) {
-        this.paused = !this.paused
-      }
-    })
-
     this.ball.update(
       this.paddleLeft.getCoordinates(),
       this.paddleRight.getCoordinates()
     )
 
+    // append game components to svg
     this.$svg.appendChild(new Board().el)
     this.$svg.appendChild(new CenterLine().el)
     this.$svg.appendChild(this.score.el)
     this.$svg.appendChild(this.ball.el)
     this.$svg.appendChild(this.paddleLeft.el)
     this.$svg.appendChild(this.paddleRight.el)
+
+    // render svg
+    this.$container = document.getElementById(element)
+    this.$container.appendChild(this.$svg)
+
+    // set up pause listener
+    this.paused = false
+    document.addEventListener(
+      'keydown',
+      e => e.key === KEYS.PAUSE &&
+        (this.paused = !this.paused)
+    )
   }
 
   update () {
