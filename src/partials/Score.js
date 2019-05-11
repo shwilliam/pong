@@ -24,9 +24,11 @@ export default class Score {
     this.score[i] += 1
   }
 
-  render (el) {
-    // console.log('render score')
+  get el () {
+    return this.$score
+  }
+
+  update () {
     this.$score.textContent = `${this.score[0]} - ${this.score[1]}`
-    if (!document.body.contains(this.$score)) el.appendChild(this.$score)
   }
 }

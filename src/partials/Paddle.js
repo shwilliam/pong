@@ -42,9 +42,11 @@ export default class Paddle {
     }
   }
 
-  render (el) {
-    // console.log('render paddle')
-    if (!document.body.contains(this.$paddle)) el.appendChild(this.$paddle)
+  get el () {
+    return this.$paddle
+  }
+
+  update () {
     setAttr(this.$paddle, 'y', this.y)
   }
 }

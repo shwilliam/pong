@@ -5,6 +5,6 @@ import Game from './partials/Game'
 const game = new Game('game');
 
 (function gameLoop () {
-  game.render()
+  game.update()
   requestAnimationFrame(gameLoop)
 })()

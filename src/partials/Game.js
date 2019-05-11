@@ -12,6 +12,7 @@ import {
 } from '../utils'
 
 import Board from './Board'
+import CenterLine from './CenterLine'
 import Paddle from './Paddle'
 import Ball from './Ball'
 import Score from './Score'
@@ -26,7 +27,6 @@ export default class Game {
     this.$container = document.getElementById(element)
     this.$container.appendChild(this.$svg)
 
-    this.board = new Board()
     this.paddleLeft = new Paddle(
       BOARD_GAP,
       (BOARD_HEIGHT - PADDLE_HEIGHT) / 2,
@@ -48,20 +48,29 @@ export default class Game {
         this.paused = !this.paused
       }
     })
-  }
 
-  render (el) {
-    // console.log('render game')
-    if (this.paused) return
-
-    this.board.render(this.$svg)
-    this.paddleLeft.render(this.$svg)
-    this.paddleRight.render(this.$svg)
-    this.ball.render(
-      this.$svg,
+    this.ball.update(
       this.paddleLeft.getCoordinates(),
       this.paddleRight.getCoordinates()
     )
-    this.score.render(this.$svg)
+
+    this.$svg.appendChild(new Board().el)
+    this.$svg.appendChild(new CenterLine().el)
+    this.$svg.appendChild(this.score.el)
+    this.$svg.appendChild(this.ball.el)
+    this.$svg.appendChild(this.paddleLeft.el)
+    this.$svg.appendChild(this.paddleRight.el)
+  }
+
+  update () {
+    if (this.paused) return
+
+    this.paddleLeft.update()
+    this.paddleRight.update()
+    this.ball.update(
+      this.paddleLeft.getCoordinates(),
+      this.paddleRight.getCoordinates()
+    )
+    this.score.update()
   }
 }
