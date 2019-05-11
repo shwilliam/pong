@@ -28,7 +28,9 @@ export default class Board {
 
   render (el) {
     // console.log('render board')
-    el.appendChild(this.$board)
-    el.appendChild(this.$centerLine)
+    if (!document.body.contains(this.$board)) {
+      el.appendChild(this.$board)
+      el.appendChild(this.$centerLine)
+    }
   }
 }

@@ -66,7 +66,7 @@ export default class Ball {
     // console.log('render ball')
     setAttr(this.$ball, 'cx', this.x)
     setAttr(this.$ball, 'cy', this.y)
-    el.appendChild(this.$ball)
+    if (!document.body.contains(this.$ball)) el.appendChild(this.$ball)
     this.x += this.vx
     this.y += this.vy
     this.checkWallCollision(paddles)

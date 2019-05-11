@@ -27,6 +27,6 @@ export default class Score {
   render (el) {
     // console.log('render score')
     this.$score.textContent = `${this.score[0]} - ${this.score[1]}`
-    el.appendChild(this.$score)
+    if (!document.body.contains(this.$score)) el.appendChild(this.$score)
   }
 }
