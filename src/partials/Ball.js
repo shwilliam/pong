@@ -33,7 +33,7 @@ export default class Ball {
 
     if (atTop || atBottom) {
       this.vy *= -1
-      this.ping.play()
+      this.ping.play().catch(e => null)
     }
 
     const [paddleLeft, paddleRight] = paddles
@@ -42,13 +42,13 @@ export default class Ball {
         this.y <= paddleRight.bottom &&
         this.y >= paddleRight.top) {
         this.vx *= -1
-        this.ping.play()
+        this.ping.play().catch(e => null)
       }
     } else if (this.x - BALL_RADIUS <= paddleLeft.right &&
       this.y <= paddleLeft.bottom &&
       this.y >= paddleLeft.top) {
       this.vx *= -1
-      this.ping.play()
+      this.ping.play().catch(e => null)
     }
   }
 
