@@ -1,12 +1,14 @@
 import {
-  BOARD_WIDTH,
-  BOARD_HEIGHT,
-  COLOR_ACCENT
-} from '../settings'
-import {
   setSvgAttr as setAttr,
   makeSvgEl as makeEl
 } from '../utils'
+import SETTINGS from '../settings'
+
+const {
+  BOARD_WIDTH,
+  BOARD_HEIGHT,
+  COLOR_ACCENT
+} = SETTINGS
 
 export default class CenterLine {
   constructor () {

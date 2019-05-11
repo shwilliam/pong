@@ -1,9 +1,16 @@
-import { BALL_RADIUS, BOARD_WIDTH, BOARD_HEIGHT, COLOR_ACCENT } from '../settings'
 import SOUND from '../../public/sounds/pong-01.wav'
 import {
   setSvgAttr as setAttr,
   makeSvgEl as makeEl
 } from '../utils'
+import SETTINGS from '../settings'
+
+const {
+  BALL_RADIUS,
+  BOARD_WIDTH,
+  BOARD_HEIGHT,
+  COLOR_ACCENT
+} = SETTINGS
 
 export default class Ball {
   constructor (increaseScore) {

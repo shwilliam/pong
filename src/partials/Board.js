@@ -1,12 +1,14 @@
 import {
-  BOARD_WIDTH,
-  BOARD_HEIGHT,
-  COLOR_BG
-} from '../settings'
-import {
   setSvgAttr as setAttr,
   makeSvgEl as makeEl
 } from '../utils'
+import SETTINGS from '../settings'
+
+const {
+  BOARD_WIDTH,
+  BOARD_HEIGHT,
+  COLOR_BG
+} = SETTINGS
 
 export default class Board {
   constructor () {

@@ -1,13 +1,15 @@
 import {
+  setSvgAttr as setAttr,
+  makeSvgEl as makeEl
+} from '../utils'
+import SETTINGS from '../settings'
+
+const {
   BOARD_WIDTH,
   COLOR_ACCENT,
   FONT_FAMILY,
   FONT_SIZE
-} from '../settings'
-import {
-  setSvgAttr as setAttr,
-  makeSvgEl as makeEl
-} from '../utils'
+} = SETTINGS
 
 export default class Score {
   constructor () {

@@ -1,8 +1,16 @@
-import { PADDLE_WIDTH, PADDLE_HEIGHT, COLOR_ACCENT, BOARD_HEIGHT, PADDLE_SPEED } from '../settings'
 import {
   setSvgAttr as setAttr,
   makeSvgEl as makeEl
 } from '../utils'
+import SETTINGS from '../settings'
+
+const {
+  PADDLE_SPEED,
+  PADDLE_WIDTH,
+  PADDLE_HEIGHT,
+  COLOR_ACCENT,
+  BOARD_HEIGHT
+} = SETTINGS
 
 export default class Paddle {
   constructor (x, initialY, keyDown, keyUp) {

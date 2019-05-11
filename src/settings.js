@@ -1,34 +1,47 @@
-// dimensions
-export const BALL_RADIUS = 8
-export const BOARD_GAP = 10
-export const BOARD_HEIGHT = 256
-export const BOARD_WIDTH = 512
-export const PADDLE_WIDTH = 8
-export const PADDLE_HEIGHT = 56
+const SETTINGS = {
+  // dimensions
+  BALL_RADIUS: 8,
+  BOARD_GAP: 10,
+  BOARD_HEIGHT: 256,
+  BOARD_WIDTH: 512,
+  PADDLE_WIDTH: 8,
+  PADDLE_HEIGHT: 56,
 
-// movement
-export const PADDLE_SPEED = 15
+  // movement
+  PADDLE_SPEED: 15,
 
-// colors
-export const COLOR_BG = '#353535'
-export const COLOR_ACCENT = 'white'
+  // colors
+  COLOR_BG: '#353535',
+  COLOR_ACCENT: 'white',
 
-// fonts
-export const FONT_FAMILY = 'Silkscreen Web'
-export const FONT_SIZE = 30
+  // fonts
+  FONT_FAMILY: 'Silkscreen Web',
+  FONT_SIZE: 30,
 
-// controls
-export const KEYS = {
-  PAUSE: ' ',
-  PLAYER1: {
-    UP: 'a',
-    DOWN: 'z'
+  // controls
+  KEYS: {
+    PAUSE: ' ',
+    PLAYER1: {
+      UP: 'a',
+      DOWN: 'z'
+    },
+    PLAYER2: {
+      UP: 'ArrowUp',
+      DOWN: 'ArrowDown'
+    }
   },
-  PLAYER2: {
-    UP: 'ArrowUp',
-    DOWN: 'ArrowDown'
-  }
-}
 
-// misc
-export const SVG_NS = 'http://www.w3.org/2000/svg'
+  // misc
+  SVG_NS: 'http://www.w3.org/2000/svg'
+};
+
+(() => {
+  const urlParams = new URLSearchParams(window.location.search)
+
+  for (let k of urlParams.keys()) {
+    // FIXME: fix for non-numeric values
+    SETTINGS[k] = parseInt(urlParams.get(k))
+  }
+})()
+
+export default SETTINGS

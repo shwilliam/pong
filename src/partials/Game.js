@@ -1,21 +1,23 @@
+import Board from './Board'
+import CenterLine from './CenterLine'
+import Paddle from './Paddle'
+import Ball from './Ball'
+import Score from './Score'
+
 import {
+  setSvgAttr as setAttr,
+  makeSvgEl as makeEl
+} from '../utils'
+import SETTINGS from '../settings'
+
+const {
   BOARD_WIDTH,
   BOARD_HEIGHT,
   BOARD_GAP,
   PADDLE_WIDTH,
   PADDLE_HEIGHT,
   KEYS
-} from '../settings'
-import {
-  setSvgAttr as setAttr,
-  makeSvgEl as makeEl
-} from '../utils'
-
-import Board from './Board'
-import CenterLine from './CenterLine'
-import Paddle from './Paddle'
-import Ball from './Ball'
-import Score from './Score'
+} = SETTINGS
 
 export default class Game {
   constructor (element) {
