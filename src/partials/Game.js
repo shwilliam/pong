@@ -36,7 +36,7 @@ export default class Game {
         if (e.key === ' ' && this.finished) {
           this.finished = false
           this.reset()
-        } else if (e.key === ' ') {
+        } else if (e.key === ' ' && !this.hardPaused) {
           this.pause(!this.paused)
         }
       }
@@ -61,7 +61,7 @@ export default class Game {
       this.paddleLeft.getCoordinates(),
       this.paddleRight.getCoordinates()
     )
-    new SettingsModal('settings-toggle', this.pause.bind(this))
+    new SettingsModal('settings-toggle', this.hardPause.bind(this))
 
     // append game components to svg
     this.$svg.appendChild(new Board().el)
@@ -78,6 +78,12 @@ export default class Game {
 
   pause (val) {
     this.paused = val
+  }
+
+  hardPause (val) {
+    // cannot unpause with SPACE
+    this.hardPaused = val
+    this.paused = true
   }
 
   finish (reset) {

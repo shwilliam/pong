@@ -36,7 +36,10 @@ export default class SettingsModal {
     $modalCloseBtn.style.fontFamily = 'inherit'
     $modalCloseBtn.addEventListener(
       'click',
-      this.toggle.bind(this)
+      () => {
+        this.toggle()
+        pause(false)
+      }
     )
 
     const $resetBtn = document.createElement('button')
