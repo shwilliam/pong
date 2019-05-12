@@ -32,8 +32,17 @@ export default class Game {
     this.paused = false
     document.addEventListener(
       'keydown',
-      e => e.key === KEYS.PAUSE &&
-        this.pause(!this.paused)
+      e => {
+        switch (this.finished) {
+          case true:
+            this.finished = false
+            this.reset()
+            break
+          default:
+            this.pause(!this.paused)
+            break
+        }
+      }
     )
 
     // init game components
@@ -49,7 +58,7 @@ export default class Game {
       KEYS.PLAYER2.DOWN,
       KEYS.PLAYER2.UP
     )
-    this.score = new Score()
+    this.score = new Score(this.finish.bind(this))
     this.ball = new Ball(this.score.increaseScore.bind(this.score))
     this.ball.update(
       this.paddleLeft.getCoordinates(),
@@ -74,7 +83,14 @@ export default class Game {
     this.paused = val
   }
 
+  finish (reset) {
+    this.finished = true
+    this.reset = reset
+  }
+
   update () {
+    if (this.finished) return
+
     this.ball.update(
       this.paused,
       this.paddleLeft.getCoordinates(),

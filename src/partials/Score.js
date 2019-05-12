@@ -9,11 +9,13 @@ const {
   COLOR_ACCENT,
   FONT_FAMILY,
   FONT_SIZE,
+  SCORE_LIMIT
 } = SETTINGS
 
 export default class Score {
-  constructor () {
+  constructor (onFinish) {
     this.score = [0, 0]
+    this.onFinish = onFinish
 
     this.$score = makeEl('text')
     setAttr(this.$score, 'fill', COLOR_ACCENT)
@@ -23,8 +25,23 @@ export default class Score {
     setAttr(this.$score, 'font-size', FONT_SIZE)
   }
 
+  checkWinner () {
+    const highestScore = Math.max(...this.score)
+
+    if (highestScore >= SCORE_LIMIT) {
+      this.winner = this.score.indexOf(highestScore) + 1
+      this.onFinish(this.reset.bind(this))
+    }
+  }
+
   increaseScore (i) {
     this.score[i] += 1
+    this.checkWinner()
+  }
+
+  reset () {
+    this.score = [0, 0]
+    this.winner = null
   }
 
   get el () {
@@ -32,6 +49,8 @@ export default class Score {
   }
 
   update () {
-    this.$score.textContent = `${this.score[0]} - ${this.score[1]}`
+    this.$score.textContent = this.winner
+      ? `Player ${this.winner} wins!`
+      : `${this.score[0]} - ${this.score[1]}`
   }
 }
