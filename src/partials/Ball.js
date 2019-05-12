@@ -67,10 +67,12 @@ export default class Ball {
     setAttr(this.$ball, 'cx', this.x)
     setAttr(this.$ball, 'cy', this.y)
 
+    this.vx = null
     while (!this.vx || this.vx === 0) {
       this.vx = Math.floor(Math.random() * 10 - 5)
     }
     this.vy = (6 - Math.abs(this.vx))
+    if (Math.random() > 0.5) this.vy *= -1
   }
 
   get el () {
