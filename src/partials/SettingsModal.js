@@ -28,7 +28,6 @@ export default class SettingsModal {
     $modalContent.style.position = 'relative'
     $modalContent.style.padding = '30px'
     $modalContent.style.lineHeight = '3rem'
-    $modalContent.style.height = '200px'
     $modalContent.style.backgroundColor = 'white'
 
     const $modalCloseBtn = document.createElement('button')
