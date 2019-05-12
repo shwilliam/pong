@@ -25,11 +25,11 @@ export default class Ball {
   checkGoal () {
     if (this.x <= 0) {
       this.vx *= -1
-      this.increaseScore(0)
+      this.increaseScore(1)
       this.reset()
     } else if (this.x >= BOARD_WIDTH) {
       this.vx *= -1
-      this.increaseScore(1)
+      this.increaseScore(0)
       this.reset()
     }
   }

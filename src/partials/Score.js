@@ -5,7 +5,6 @@ import {
 import SETTINGS from '../settings'
 
 const {
-  BOARD_WIDTH,
   COLOR_ACCENT,
   FONT_FAMILY,
   FONT_SIZE,
@@ -19,7 +18,7 @@ export default class Score {
 
     this.$score = makeEl('text')
     setAttr(this.$score, 'fill', COLOR_ACCENT)
-    setAttr(this.$score, 'x', BOARD_WIDTH / 2 - 45) // TODO: fix score x pos
+    setAttr(this.$score, 'x', 30)
     setAttr(this.$score, 'y', 30)
     setAttr(this.$score, 'font-family', FONT_FAMILY)
     setAttr(this.$score, 'font-size', FONT_SIZE)
@@ -50,7 +49,7 @@ export default class Score {
 
   update () {
     this.$score.textContent = this.winner
-      ? `Player ${this.winner} wins!`
+      ? `P${this.winner} wins!`
       : `${this.score[0]} - ${this.score[1]}`
   }
 }
