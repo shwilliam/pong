@@ -1,3 +1,4 @@
+import KeyListener from './KeyListener'
 import {
   setSvgAttr as setAttr,
   makeSvgEl as makeEl
@@ -12,29 +13,20 @@ const {
   BOARD_HEIGHT
 } = SETTINGS
 
-export default class Paddle {
+export default class Paddle extends KeyListener {
   constructor (x, initialY, keyDown, keyUp) {
+    super()
     this.x = x
     this.y = initialY
+    this.keyDown = keyDown
+    this.keyUp = keyUp
+    this.paused = false
+    this.paused = true
     this.$paddle = makeEl('rect')
     setAttr(this.$paddle, 'x', x)
     setAttr(this.$paddle, 'width', PADDLE_WIDTH)
     setAttr(this.$paddle, 'height', PADDLE_HEIGHT)
     setAttr(this.$paddle, 'fill', COLOR_ACCENT)
-
-    this.paused = true
-    document.addEventListener('keydown', e => {
-      if (this.paused) return
-
-      switch (e.key) {
-        case keyDown:
-          this.move(PADDLE_SPEED)
-          break
-        case keyUp:
-          this.move(-PADDLE_SPEED)
-          break
-      }
-    })
   }
 
   getCoordinates () {
@@ -43,6 +35,13 @@ export default class Paddle {
       top: this.y,
       right: this.x + PADDLE_WIDTH,
       bottom: this.y + PADDLE_HEIGHT
+    }
+  }
+
+  checkMove () {
+    if (!this.paused) {
+      this.activeKeys.includes(this.keyDown) && this.move(PADDLE_SPEED)
+      this.activeKeys.includes(this.keyUp) && this.move(-PADDLE_SPEED)
     }
   }
 
@@ -59,6 +58,7 @@ export default class Paddle {
 
   update (paused) {
     this.paused = paused
+    this.checkMove()
     setAttr(this.$paddle, 'y', this.y)
   }
 }

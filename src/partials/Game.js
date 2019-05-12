@@ -33,14 +33,11 @@ export default class Game {
     document.addEventListener(
       'keydown',
       e => {
-        switch (this.finished) {
-          case true:
-            this.finished = false
-            this.reset()
-            break
-          default:
-            this.pause(!this.paused)
-            break
+        if (e.key === ' ' && this.finished) {
+          this.finished = false
+          this.reset()
+        } else if (e.key === ' ') {
+          this.pause(!this.paused)
         }
       }
     )
