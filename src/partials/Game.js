@@ -29,7 +29,7 @@ export default class Game {
     setAttr(this.$svg, 'viewbox', `0 0 ${BOARD_WIDTH} ${BOARD_HEIGHT}`)
 
     // set up pause listener
-    this.paused = false
+    this.paused = true
     document.addEventListener(
       'keydown',
       e => {

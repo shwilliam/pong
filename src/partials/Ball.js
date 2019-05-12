@@ -64,6 +64,8 @@ export default class Ball {
   reset () {
     this.x = BOARD_WIDTH / 2
     this.y = BOARD_HEIGHT / 2
+    setAttr(this.$ball, 'cx', this.x)
+    setAttr(this.$ball, 'cy', this.y)
 
     while (!this.vx || this.vx === 0) {
       this.vx = Math.floor(Math.random() * 10 - 5)
