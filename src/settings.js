@@ -1,4 +1,7 @@
 const SETTINGS = {
+  // game
+  SCORE_LIMIT: 5,
+
   // dimensions
   BALL_RADIUS: 8,
   BOARD_GAP: 10,
@@ -32,8 +35,7 @@ const SETTINGS = {
   },
 
   // misc
-  SVG_NS: 'http://www.w3.org/2000/svg',
-  SCORE_LIMIT: 2
+  SVG_NS: 'http://www.w3.org/2000/svg'
 };
 
 (() => {
