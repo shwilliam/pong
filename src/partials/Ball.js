@@ -7,6 +7,7 @@ import SETTINGS from '../settings'
 
 const {
   BALL_RADIUS,
+  BOARD_GAP,
   BOARD_WIDTH,
   BOARD_HEIGHT,
   COLOR_ACCENT
@@ -23,11 +24,11 @@ export default class Ball {
   }
 
   checkGoal () {
-    if (this.x <= 0) {
+    if (this.x <= BOARD_GAP) {
       this.vx *= -1
       this.increaseScore(1)
       this.reset()
-    } else if (this.x >= BOARD_WIDTH) {
+    } else if (this.x >= BOARD_WIDTH - BOARD_GAP) {
       this.vx *= -1
       this.increaseScore(0)
       this.reset()
@@ -46,16 +47,16 @@ export default class Ball {
     const [paddleLeft, paddleRight] = paddles
     if (this.vx > 0) {
       if (this.x + BALL_RADIUS >= paddleRight.left &&
-        this.x + BALL_RADIUS <= paddleRight.right &&
-        this.y <= paddleRight.bottom &&
-        this.y >= paddleRight.top) {
+        this.x - (BALL_RADIUS / 3) <= paddleRight.right &&
+        this.y - (BALL_RADIUS / 3) <= paddleRight.bottom &&
+        this.y + (BALL_RADIUS / 3) >= paddleRight.top) {
         this.vx *= -1
         this.ping.play().catch(e => null)
       }
     } else if (this.x - BALL_RADIUS <= paddleLeft.right &&
-      this.x - BALL_RADIUS >= paddleLeft.left &&
-      this.y <= paddleLeft.bottom &&
-      this.y >= paddleLeft.top) {
+      this.x + (BALL_RADIUS / 3) >= paddleLeft.left &&
+      this.y - (BALL_RADIUS / 3) <= paddleLeft.bottom &&
+      this.y + (BALL_RADIUS / 3) >= paddleLeft.top) {
       this.vx *= -1
       this.ping.play().catch(e => null)
     }
