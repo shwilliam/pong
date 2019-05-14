@@ -88,19 +88,45 @@ export default class SettingsModal {
     $paddleHeightInput.setAttribute('max', 150)
     $paddleHeightLabel.appendChild($paddleHeightInput)
 
+    const $onePlayerToggleLabel = document.createElement('label')
+    $onePlayerToggleLabel.setAttribute('for', 'one-player')
+    $onePlayerToggleLabel.innerText = 'single player: '
+    $onePlayerToggleLabel.style.display = 'block'
+    const $onePlayerToggleInput = document.createElement('input')
+    $onePlayerToggleInput.setAttribute('id', 'one-player')
+    $onePlayerToggleInput.setAttribute('name', 'one-player')
+    $onePlayerToggleInput.setAttribute('type', 'checkbox')
+    $onePlayerToggleInput.setAttribute('value', false)
+    $onePlayerToggleLabel.appendChild($onePlayerToggleInput)
+
+    const $compDifficultyLabel = document.createElement('label')
+    $compDifficultyLabel.setAttribute('for', 'comp-difficulty')
+    $compDifficultyLabel.innerText = 'computer difficulty: '
+    $compDifficultyLabel.style.display = 'block'
+    const $compDifficultyInput = document.createElement('input')
+    $compDifficultyInput.setAttribute('id', 'comp-difficulty')
+    $compDifficultyInput.setAttribute('name', 'comp-difficulty')
+    $compDifficultyInput.setAttribute('type', 'range')
+    $compDifficultyInput.setAttribute('min', 5)
+    $compDifficultyInput.setAttribute('value', 7)
+    $compDifficultyInput.setAttribute('max', 10)
+    $compDifficultyLabel.appendChild($compDifficultyInput)
+
     const $createGameBtn = document.createElement('button')
     $createGameBtn.innerText = 'create game'
     $createGameBtn.style.fontFamily = 'inherit'
     $createGameBtn.addEventListener(
       'click',
       () => {
-        window.location = `${window.location.href.split('?')[0]}?PADDLE_SPEED=${$paddleSpeedInput.value}&BALL_RADIUS=${$ballRadiusInput.value}&PADDLE_HEIGHT=${$paddleHeightInput.value}`
+        window.location = `${window.location.href.split('?')[0]}?PADDLE_SPEED=${$paddleSpeedInput.value}&BALL_RADIUS=${$ballRadiusInput.value}&PADDLE_HEIGHT=${$paddleHeightInput.value}&SINGLE_PLAYER=${$onePlayerToggleInput.checked ? 1 : 0}&COMP_DIFFICULTY=${$compDifficultyInput.value}`
       }
     )
 
     $modalContent.appendChild($paddleSpeedLabel)
     $modalContent.appendChild($ballRadiusLabel)
     $modalContent.appendChild($paddleHeightLabel)
+    $modalContent.appendChild($onePlayerToggleLabel)
+    $modalContent.appendChild($compDifficultyLabel)
     $modalContent.appendChild($modalCloseBtn)
     $modalContent.appendChild($resetBtn)
     $modalContent.appendChild($createGameBtn)

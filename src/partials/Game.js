@@ -4,7 +4,6 @@ import Paddle from './Paddle'
 import Ball from './Ball'
 import Score from './Score'
 import SettingsModal from './SettingsModal'
-
 import {
   setSvgAttr as setAttr,
   makeSvgEl as makeEl
@@ -15,9 +14,10 @@ const {
   BOARD_WIDTH,
   BOARD_HEIGHT,
   BOARD_GAP,
+  KEYS,
   PADDLE_WIDTH,
   PADDLE_HEIGHT,
-  KEYS
+  SINGLE_PLAYER
 } = SETTINGS
 
 export default class Game {
@@ -100,7 +100,7 @@ export default class Game {
       this.paddleRight.getCoordinates()
     )
     this.paddleLeft.update(this.paused)
-    this.paddleRight.update(this.paused, this.ball.position)
+    this.paddleRight.update(this.paused, SINGLE_PLAYER && this.ball.position)
     this.score.update()
   }
 }

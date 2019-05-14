@@ -1,6 +1,7 @@
 const SETTINGS = {
   // game
   SCORE_LIMIT: 5,
+  SINGLE_PLAYER: 0,
 
   // comp sim
   COMP_DIFFICULTY: 7,
