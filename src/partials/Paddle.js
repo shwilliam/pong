@@ -49,6 +49,10 @@ export default class Paddle extends KeyListener {
     if (this.y + distance < BOARD_HEIGHT - PADDLE_HEIGHT &&
       this.y + distance > 0) {
       this.y += distance
+    } else if (distance > 0) {
+      this.y = BOARD_HEIGHT - PADDLE_HEIGHT
+    } else {
+      this.y = 0
     }
   }
 
