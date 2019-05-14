@@ -24,6 +24,7 @@ export default class Paddle extends KeyListener {
     this.keyUp = keyUp
     this.paused = false
     this.paused = true
+
     this.$paddle = makeEl('rect')
     setAttr(this.$paddle, 'x', x)
     setAttr(this.$paddle, 'width', PADDLE_WIDTH)
@@ -31,7 +32,7 @@ export default class Paddle extends KeyListener {
     setAttr(this.$paddle, 'fill', COLOR_ACCENT)
   }
 
-  getCoordinates () {
+  get coordinates () {
     return {
       left: this.x,
       top: this.y,
@@ -49,10 +50,12 @@ export default class Paddle extends KeyListener {
 
   checkCompMove (ballPos) {
     if (!this.paused) {
+      // randomized delay when direction changes
       if (Math.random() > 1 / COMP_DIFFICULTY) {
         this.move(this.yDiff)
       } else {
         this.yDiff = (this.y + (PADDLE_HEIGHT / 2)) - ballPos[1]
+        // cap speed as specified in settings
         if (this.yDiff < -COMP_MAX_SPEED) {
           this.yDiff = COMP_MAX_SPEED
         } else if (this.yDiff > COMP_MAX_SPEED) {
@@ -64,6 +67,7 @@ export default class Paddle extends KeyListener {
   }
 
   move (distance) {
+    // if not at top or bottom
     if (this.y + distance < BOARD_HEIGHT - PADDLE_HEIGHT &&
       this.y + distance > 0) {
       this.y += distance

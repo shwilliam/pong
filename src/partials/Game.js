@@ -58,8 +58,8 @@ export default class Game {
     this.score = new Score(this.finish.bind(this))
     this.ball = new Ball(this.score.increaseScore.bind(this.score))
     this.ball.update(
-      this.paddleLeft.getCoordinates(),
-      this.paddleRight.getCoordinates()
+      this.paddleLeft.coordinates,
+      this.paddleRight.coordinates
     )
     this.settings = new SettingsModal('settings-toggle', this.hardPause.bind(this))
 
@@ -96,8 +96,8 @@ export default class Game {
 
     this.ball.update(
       this.paused,
-      this.paddleLeft.getCoordinates(),
-      this.paddleRight.getCoordinates()
+      this.paddleLeft.coordinates,
+      this.paddleRight.coordinates
     )
     this.paddleLeft.update(this.paused)
     this.paddleRight.update(this.paused, SINGLE_PLAYER && this.ball.position)

@@ -43,11 +43,11 @@ const SETTINGS = {
   SVG_NS: 'http://www.w3.org/2000/svg'
 };
 
+// singleton to check and apply URL query string settings
 (() => {
   const urlParams = new URLSearchParams(window.location.search)
 
   for (let k of urlParams.keys()) {
-    // FIXME: fix for non-numeric values
     SETTINGS[k] = parseInt(urlParams.get(k))
   }
 })()
