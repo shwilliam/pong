@@ -6,33 +6,20 @@ export default class SettingsModal {
     this.isOpen = false
 
     const $toggle = document.getElementById(btnEl)
-    $toggle.style.fontFamily = 'inherit'
     $toggle.addEventListener('click', () => {
       this.toggle()
       pause(this.isOpen)
     })
 
     this.$modal = document.createElement('div')
-    this.$modal.style.position = 'fixed'
-    this.$modal.style.top = 0
-    this.$modal.style.right = 0
-    this.$modal.style.bottom = 0
-    this.$modal.style.left = 0
-    this.$modal.style.display = 'flex'
-    this.$modal.style.justifyContent = 'center'
-    this.$modal.style.alignItems = 'center'
-    this.$modal.style.backgroundColor = 'rgba(0,0,0,0.4)'
+    this.$modal.classList.add('modal')
 
     const $modalContent = document.createElement('div')
+    $modalContent.classList.add('modal__content')
     $modalContent.style.fontFamily = FONT_FAMILY
-    $modalContent.style.position = 'relative'
-    $modalContent.style.padding = '30px'
-    $modalContent.style.lineHeight = '3rem'
-    $modalContent.style.backgroundColor = 'white'
 
     const $modalCloseBtn = document.createElement('button')
     $modalCloseBtn.innerText = 'cancel'
-    $modalCloseBtn.style.fontFamily = 'inherit'
     $modalCloseBtn.addEventListener(
       'click',
       () => {
@@ -43,7 +30,6 @@ export default class SettingsModal {
 
     const $resetBtn = document.createElement('button')
     $resetBtn.innerText = 'reset'
-    $resetBtn.style.fontFamily = 'inherit'
     $resetBtn.addEventListener(
       'click',
       () => { window.location = window.location.href.split('?')[0] }
@@ -52,7 +38,7 @@ export default class SettingsModal {
     const $paddleSpeedLabel = document.createElement('label')
     $paddleSpeedLabel.setAttribute('for', 'paddle-speed')
     $paddleSpeedLabel.innerText = 'paddle speed: '
-    $paddleSpeedLabel.style.display = 'block'
+    $paddleSpeedLabel.classList.add('modal__label')
     const $paddleSpeedInput = document.createElement('input')
     $paddleSpeedInput.setAttribute('id', 'paddle-speed')
     $paddleSpeedInput.setAttribute('name', 'paddle-speed')
@@ -65,7 +51,7 @@ export default class SettingsModal {
     const $ballRadiusLabel = document.createElement('label')
     $ballRadiusLabel.setAttribute('for', 'ball-radius')
     $ballRadiusLabel.innerText = 'ball radius: '
-    $ballRadiusLabel.style.display = 'block'
+    $ballRadiusLabel.classList.add('modal__label')
     const $ballRadiusInput = document.createElement('input')
     $ballRadiusInput.setAttribute('id', 'ball-radius')
     $ballRadiusInput.setAttribute('name', 'ball-radius')
@@ -78,7 +64,7 @@ export default class SettingsModal {
     const $paddleHeightLabel = document.createElement('label')
     $paddleHeightLabel.setAttribute('for', 'paddle-height')
     $paddleHeightLabel.innerText = 'paddle height: '
-    $paddleHeightLabel.style.display = 'block'
+    $paddleHeightLabel.classList.add('modal__label')
     const $paddleHeightInput = document.createElement('input')
     $paddleHeightInput.setAttribute('id', 'paddle-height')
     $paddleHeightInput.setAttribute('name', 'paddle-height')
@@ -91,18 +77,19 @@ export default class SettingsModal {
     const $onePlayerToggleLabel = document.createElement('label')
     $onePlayerToggleLabel.setAttribute('for', 'one-player')
     $onePlayerToggleLabel.innerText = 'single player: '
-    $onePlayerToggleLabel.style.display = 'block'
+    $onePlayerToggleLabel.classList.add('modal__label')
     const $onePlayerToggleInput = document.createElement('input')
     $onePlayerToggleInput.setAttribute('id', 'one-player')
     $onePlayerToggleInput.setAttribute('name', 'one-player')
     $onePlayerToggleInput.setAttribute('type', 'checkbox')
     $onePlayerToggleInput.setAttribute('value', false)
+    $onePlayerToggleInput.classList.add('modal__checkbox')
     $onePlayerToggleLabel.appendChild($onePlayerToggleInput)
 
     const $compDifficultyLabel = document.createElement('label')
     $compDifficultyLabel.setAttribute('for', 'comp-difficulty')
     $compDifficultyLabel.innerText = 'computer difficulty: '
-    $compDifficultyLabel.style.display = 'block'
+    $compDifficultyLabel.classList.add('modal__label')
     const $compDifficultyInput = document.createElement('input')
     $compDifficultyInput.setAttribute('id', 'comp-difficulty')
     $compDifficultyInput.setAttribute('name', 'comp-difficulty')
@@ -114,7 +101,6 @@ export default class SettingsModal {
 
     const $createGameBtn = document.createElement('button')
     $createGameBtn.innerText = 'create game'
-    $createGameBtn.style.fontFamily = 'inherit'
     $createGameBtn.addEventListener(
       'click',
       () => {
