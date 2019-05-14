@@ -61,7 +61,7 @@ export default class Game {
       this.paddleLeft.getCoordinates(),
       this.paddleRight.getCoordinates()
     )
-    new SettingsModal('settings-toggle', this.hardPause.bind(this))
+    this.settings = new SettingsModal('settings-toggle', this.hardPause.bind(this))
 
     // append game components to svg
     this.$svg.appendChild(new Board().el)

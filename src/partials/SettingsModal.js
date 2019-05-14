@@ -9,7 +9,7 @@ export default class SettingsModal {
     $toggle.style.fontFamily = 'inherit'
     $toggle.addEventListener('click', () => {
       this.toggle()
-      pause(true)
+      pause(this.isOpen)
     })
 
     this.$modal = document.createElement('div')
