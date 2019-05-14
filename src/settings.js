@@ -2,6 +2,10 @@ const SETTINGS = {
   // game
   SCORE_LIMIT: 5,
 
+  // comp sim
+  COMP_DIFFICULTY: 7,
+  COMP_MAX_SPEED: 1,
+
   // dimensions
   BALL_RADIUS: 8,
   BOARD_GAP: 10,

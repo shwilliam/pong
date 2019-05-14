@@ -100,7 +100,7 @@ export default class Game {
       this.paddleRight.getCoordinates()
     )
     this.paddleLeft.update(this.paused)
-    this.paddleRight.update(this.paused)
+    this.paddleRight.update(this.paused, this.ball.position)
     this.score.update()
   }
 }

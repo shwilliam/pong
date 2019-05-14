@@ -6,6 +6,8 @@ import {
 import SETTINGS from '../settings'
 
 const {
+  COMP_DIFFICULTY,
+  COMP_MAX_SPEED,
   PADDLE_SPEED,
   PADDLE_WIDTH,
   PADDLE_HEIGHT,
@@ -45,6 +47,22 @@ export default class Paddle extends KeyListener {
     }
   }
 
+  checkCompMove (ballPos) {
+    if (!this.paused) {
+      if (Math.random() > 1 / COMP_DIFFICULTY) {
+        this.move(this.yDiff)
+      } else {
+        this.yDiff = (this.y + (PADDLE_HEIGHT / 2)) - ballPos[1]
+        if (this.yDiff < -COMP_MAX_SPEED) {
+          this.yDiff = COMP_MAX_SPEED
+        } else if (this.yDiff > COMP_MAX_SPEED) {
+          this.yDiff = -COMP_MAX_SPEED
+        }
+        this.move(this.yDiff)
+      }
+    }
+  }
+
   move (distance) {
     if (this.y + distance < BOARD_HEIGHT - PADDLE_HEIGHT &&
       this.y + distance > 0) {
@@ -60,9 +78,11 @@ export default class Paddle extends KeyListener {
     return this.$paddle
   }
 
-  update (paused) {
+  update (paused, ballPos) {
     this.paused = paused
-    this.checkMove()
+    ballPos // only passed for comp paddle
+      ? this.checkCompMove(ballPos)
+      : this.checkMove()
     setAttr(this.$paddle, 'y', this.y)
   }
 }

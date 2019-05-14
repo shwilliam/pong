@@ -80,6 +80,10 @@ export default class Ball {
     return this.$ball
   }
 
+  get position () {
+    return [this.x, this.y]
+  }
+
   update (paused, ...paddles) {
     if (paused) return
 
